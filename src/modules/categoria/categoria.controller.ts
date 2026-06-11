@@ -12,8 +12,8 @@ export class CategoriaController {
     @Get()
     @Render('categoria/inicial')
     async inicial(): Promise<object> {
-        const categorias = await this.categoriaService.findAll();
-        return { titulo: 'Consulta de Categorias', categorias };
+        const categoria = await this.categoriaService.findAll();
+        return { titulo: 'Consulta de Categorias', categoria };
     }
 
     @Get('criar')
@@ -25,6 +25,7 @@ export class CategoriaController {
     @Post('criar')
     @Redirect('/categoria')
     @ValidationView('categoria/formulario', ({ request, errors }) => ({
+        titulo: 'Nova Categoria',
         categoria: { ...request.body },
         errors,
     }))
@@ -43,6 +44,7 @@ export class CategoriaController {
     @Post(':id/editar')
     @Redirect('/categoria')
     @ValidationView('categoria/formulario', ({ request, errors }) => ({
+        titulo: 'Editar Categoria',
         categoria: { id: request.params.id, ...request.body },
         errors,
     }))
