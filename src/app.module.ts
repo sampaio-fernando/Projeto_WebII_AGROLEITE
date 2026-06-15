@@ -8,6 +8,7 @@ import { FornecedorModule } from './modules/fornecedor/fornecedor.module';
 import { InsumoModule } from './modules/insumo/insumo.module';
 import { CategoriaModule } from './modules/categoria/categoria.module';
 import { PiqueteModule } from './modules/piquete/piquete.module';
+import { PropriedadeModule } from './modules/propriedade/propriedade.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { PiqueteModule } from './modules/piquete/piquete.module';
     FornecedorModule,
     InsumoModule,
     CategoriaModule,
-    PiqueteModule
+    PiqueteModule,
+    PropriedadeModule
   ],
   controllers: [AppController],
   providers: [AppService],

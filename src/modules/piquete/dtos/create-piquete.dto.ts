@@ -10,6 +10,9 @@ export class CreatePiqueteDto {
   @Min(0.01, { message: 'O tamanho deve ser maior que zero' })
   tamanho!: number;
 
+  @IsNotEmpty({ message: 'O tipo de pastagem é obrigatório' })
+  tipoPastagem!: string;
+
   @IsNumber({}, { message: 'Selecione uma propriedade' })
   @Transform(({ value }) => parseInt(value))
   propriedade!: number;

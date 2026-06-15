@@ -1,7 +1,6 @@
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-// import { Propriedade } from '../propriedade/propriedade.entity';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('piquetes')
+@Entity('propriedades')
 export class Propriedade extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
@@ -12,10 +11,12 @@ export class Propriedade extends BaseEntity {
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   tamanho!: number;
 
-  @Column({ name: 'endereco', type: 'varchar', length: 120 })
-  endereco!: string;
+  @Column({ type: 'varchar', length: 60 })
+  linha!: string;
 
-//   @ManyToOne(() => Propriedade)
-//   @JoinColumn({ name: 'propriedade_id' })
-//   propriedade!: Propriedade;
+  @Column({ type: 'varchar', length: 80 })
+  cidade!: string;
+
+  @Column({ type: 'varchar', length: 2 })
+  estado!: string;
 }
