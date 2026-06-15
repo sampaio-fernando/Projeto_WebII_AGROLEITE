@@ -2,13 +2,13 @@
     <div class="col-sm-6 p-md-0">
         <div class="welcome-text">
             <h4><%= titulo %></h4>
-            <p class="mb-0">&raquo; Consulte todos os piquetes cadastrados</p>
+            <p class="mb-0">&raquo; Consulte todas as propriedades cadastradas</p>
         </div>
     </div>
     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Inicial</a></li>
-            <li class="breadcrumb-item active">Piquetes</li>
+            <li class="breadcrumb-item active">Propriedades</li>
         </ol>
     </div>
 </div>
@@ -29,7 +29,7 @@
                         </div>
                     </form>
                 </div>
-                <a href="/piquetes/criar" class="btn btn-primary mb-2">Adicionar Piquete</a>
+                <a href="/propriedades/criar" class="btn btn-primary mb-2">Adicionar Propriedade</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -39,25 +39,27 @@
                                 <th>#</th>
                                 <th>Nome</th>
                                 <th>Tamanho (alq.)</th>
-                                <th>Tipo de Pastagem</th>
-                                <th>Propriedade</th>
+                                <th>Nº Linha</th>
+                                <th>Cidade</th>
+                                <th>Estado</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (let index = 0; index < piquetes.length; index++) { %>
+                            <% for (let index = 0; index < propriedades.length; index++) { %>
                                 <tr>
                                     <td><%= index + 1 %></td>
-                                    <td><%= piquetes[index].nome %></td>
-                                    <td><%= piquetes[index].tamanho %></td>
-                                    <td><%= piquetes[index].tipoPastagem %></td>
-                                    <td><%= piquetes[index].propriedade?.nome %></td>
+                                    <td><%= propriedades[index].nome %></td>
+                                    <td><%= propriedades[index].tamanho %></td>
+                                    <td><%= propriedades[index].linha %></td>
+                                    <td><%= propriedades[index].cidade %></td>
+                                    <td><%= propriedades[index].estado %></td>
                                     <td>
-                                        <a href="/piquetes/<%= piquetes[index].id %>/editar" class="text-warning mr-1">
+                                        <a href="/propriedades/<%= propriedades[index].id %>/editar" class="text-warning mr-1">
                                             <i class="fa fa-pencil fa-lg"></i>
                                         </a>
                                         <a href="#" class="text-danger remover"
-                                           data-id="<%= piquetes[index].id %>">
+                                           data-id="<%= propriedades[index].id %>">
                                             <i class="fa fa-trash fa-lg"></i>
                                         </a>
                                     </td>
