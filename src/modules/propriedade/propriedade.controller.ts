@@ -50,10 +50,27 @@ export class PropriedadeController {
         await this.propriedadeService.update(id, dados);
     }
 
+    @Get(':id/excluir')
+    @Render('propriedade/remover')
+    async formExcluir(@Param('id') id: number): Promise<object> {
+        const propriedade = await this.propriedadeService.findOne(id);
+        if (!propriedade) throw new Error('Propriedade não encontrada!');
+        return {
+            titulo: 'Exclusão de Propriedade',
+            subtitulo: `Exclusão de propriedade: ${propriedade.nome}`,
+            propriedade,
+        };
+    }
+
     @Post(':id/excluir')
-    @HttpCode(204)
     @Redirect('/propriedades')
     async formExcluirSalvar(@Param('id') id: number): Promise<void> {
+        await this.propriedadeService.remove(id);
+    }
+
+    @Post(':id/remover')
+    @HttpCode(204)
+    async remove(@Param('id') id: number): Promise<void> {
         await this.propriedadeService.remove(id);
     }
 }

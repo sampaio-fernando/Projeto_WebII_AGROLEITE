@@ -37,6 +37,25 @@ export class PiqueteController {
         await this.piqueteService.create(dados);
     }
 
+    @Get(':id/editar')
+    @Render('piquete/formulario')
+    async formEditar(@Param('id') id: number): Promise<object> {
+        const piquete = await this.piqueteService.findOne(id);
+        const propriedades = await this.propriedadeService.findAll();
+        if (!piquete) throw new Error('Piquete não encontrado!');
+        return { titulo: 'Editar Piquete', piquete, propriedades };
+    }
+
+    @Post(':id/editar')
+    @Redirect('/piquetes')
+    @ValidationView('piquete/formulario', ({ request, errors }) => ({
+        piquete: { id: request.params.id, ...request.body },
+        errors,
+    }))
+    async formEditarSalvar(@Param('id') id: number, @Body() dados: UpdatePiqueteDto): Promise<void> {
+        await this.piqueteService.update(id, dados);
+    } 
+
     @Get(':id/excluir')
     @Render('piquete/remover')
     async formExcluir(@Param('id') id: number): Promise<object> {

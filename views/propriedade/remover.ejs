@@ -1,0 +1,65 @@
+<% propriedade = locals.propriedade || {} %>
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4><%= locals.titulo %></h4>
+            <p class="mb-0">&raquo; <%= locals.subtitulo %></p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicial</a></li>
+            <li class="breadcrumb-item"><a href="/propriedades">Consulta de Propriedades</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Excluir Propriedade</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card border-danger">
+            <div class="card-header bg-danger p-3">
+                <h4 class="card-title text-white mb-0">Exclusão de propriedade</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    <b>Esta ação excluirá o registro de forma permanente.</b>
+                </div>
+                <p class="mb-4">
+                    Tem certeza que deseja excluir a propriedade abaixo?
+                </p>
+                <div class="table-responsive mb-4">
+                    <table class="table table-bordered mb-0">
+                        <tbody>
+                            <tr>
+                                <th>Nome</th>
+                                <td><%= propriedade.nome %></td>
+                            </tr>
+                            <tr>
+                                <th>Tamanho</th>
+                                <td><%= propriedade.tamanho %> alqueires</td>
+                            </tr>
+                            <tr>
+                                <th>Linha</th>
+                                <td><%= propriedade.linha %></td>
+                            </tr>
+                            <tr>
+                                <th>Cidade</th>
+                                <td><%= propriedade.cidade %></td>
+                            </tr>
+                            <tr>
+                                <th>Estado</th>
+                                <td><%= propriedade.estado %></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <form action="/propriedades/<%= propriedade.id %>/excluir" method="POST">
+                    <button type="submit" class="btn btn-danger mr-2">Confirmar Exclusão</button>
+                    <a href="/propriedades" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
