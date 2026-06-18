@@ -52,10 +52,27 @@ export class CategoriaController {
         await this.categoriaService.update(id, dados);
     }
 
+    @Get(':id/excluir')
+    @Render('categoria/remover')
+    async formExcluir(@Param('id') id: number): Promise<object> {
+        const categoria = await this.categoriaService.findOne(id);
+        if (!categoria) throw new Error('Categoria não encontrada!');
+        return {
+            titulo: 'Exclusão de Categoria',
+            subtitulo: `Exclusão de categoria: ${categoria.nome}`,
+            categoria,
+        };
+    }
+
     @Post(':id/excluir')
-    @HttpCode(204)
     @Redirect('/categoria')
     async formExcluirSalvar(@Param('id') id: number): Promise<void> {
+        await this.categoriaService.remove(id);
+    }
+
+    @Post(':id/remover')
+    @HttpCode(204)
+    async remove(@Param('id') id: number): Promise<void> {
         await this.categoriaService.remove(id);
     }
 }
