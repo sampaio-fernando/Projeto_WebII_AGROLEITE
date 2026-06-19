@@ -1,0 +1,110 @@
+<% const erros = validationErrors(locals.errors); %>
+<% const insumo = locals.insumo || {} %>
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>
+                <%= locals.titulo %>
+            </h4>
+            <p class="mb-0">&raquo; Adicionar novo Insumo</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicial</a></li>
+            <li class="breadcrumb-item"><a href="/insumos">Consulta de Insumos</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Novo Insumo</a></li>
+        </ol>
+    </div>
+</div>
+<!-- row -->
+<div class="row">
+    <div class="col-lg-12">
+
+        <% if (erros.all.length) { %>
+            <div class="alert alert-danger">
+              <h5>Não foi possível salvar</h5>
+              <ul>
+                <% erros.all.forEach((mensagem) => { %>
+                  <li><%= mensagem %></li>
+                <% }) %>
+              </ul>
+            </div>
+          <% } %>
+
+        <div class="card">
+            <div class="card-body">
+                <form action="/insumos/<%= insumo.id ? insumo.id + '/editar' : 'criar' %>" method="POST">
+                    <div class="form-group mb-3">
+                        <label for="descricao" class="form-label">Descrição do Insumo</label>
+                        <input type="text" class="form-control <%= erros.has('descricao') ? 'is-invalid' : '' %>" 
+                            id="descricao" name="descricao" placeholder="Informe a descrição do insumo" value="<%= insumo ? insumo.descricao : '' %>">
+
+                            <% if (erros.has('descricao')) { %>
+                                <div class="invalid-feedback d-block">
+                                    <ul>
+                                        <% erros.get('descricao').forEach((mensagem) => { %>
+                                            <li> <%= mensagem %> </li>
+                                        <% }) %>
+                                    </ul>   
+                                </div>
+                            <% } %>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3 mb-3">
+                            <label for="uni_medida" class="form-label">Unid. Medida</label>
+                            <Select name="uni_medida" class="form-control">
+                                <option value="">Selecione</option>
+                                <option value="Unid">Unidade</option>
+                                <option value="Kg">Quilograma</option>
+                                <option value="Saco">Saco</option>
+                                <option value="Ml">Ml</option>
+                                <option value="Frasco">Frasco</option>
+                                <option value="Rolo">Rolo</option>
+                                <option value="Caixa">Caixa</option>
+                                <option value="Metro">Mt</option>
+                            </Select>
+                            
+                        </div>
+
+                        <div class="form-group col-md-3 mb-3">
+                            <label for="categoria" class="form-label">Categoria</label>
+                            <select name="categoria" class="form-control">
+                                <option value="">Selecione</option>
+                                <option value="Alimentação">Alimentação</option>
+                                <option value="Manutenção">Manutenção</option>
+                                <option value="Ferramenta">Ferramenta</option>
+                                <option value="Operacional">Operacional</option>
+                                <option value="Medicamento">Medicamento</option>
+                            </select>
+                        </div>
+
+                        
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="valor" class="form-label">Valor Unit.</label>
+                            <input type="text" class="form-control" id="valor" name="valor" 
+                                placeholder="0.00" value="<%= locals.insumo ? locals.insumo.valor.replace('.', ',') : '' %>">
+                            
+                            <% if (erros.has('valor')) { %>
+                                <div class="invalid-feedback d-block">
+                                    <ul>
+                                        <% erros.get('valor_unit').forEach((mensagem) => { %>
+                                            <li> <%= mensagem %> </li>
+                                        <% }) %>
+                                    </ul>   
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary mr-2">Salvar Insumo</button>
+                        <a href="/insumos" class="btn btn-warning">Cancelar</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
