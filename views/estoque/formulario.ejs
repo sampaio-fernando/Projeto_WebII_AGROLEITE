@@ -1,0 +1,118 @@
+<% const erros = validationErrors(locals.errors); %>
+<% const estoque = locals.estoque || {}; %>
+<% const insumos = locals.insumos || []; %>
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4><%= titulo %></h4>
+            <p class="mb-0">&raquo; Preencha os dados do estoque</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicial</a></li>
+            <li class="breadcrumb-item"><a href="/estoques">Estoque</a></li>
+            <li class="breadcrumb-item active">Formulário</li>
+        </ol>
+    </div>
+</div>
+
+<% if (erros.all.length) { %>
+    <div class="alert alert-danger">
+        <h5>Não foi possível salvar</h5>
+        <ul>
+            <% erros.all.forEach(msg => { %><li><%= msg %></li><% }) %>
+        </ul>
+    </div>
+<% } %>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <form action="/estoques/<%= estoque.id ? estoque.id + '/editar' : 'criar' %>" method="POST">
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="insumo">Insumo</label>
+                            <select name="insumo"
+                                class="form-control <%= erros.has('insumo') ? 'is-invalid' : '' %>"
+                                id="insumo">
+                                <option value="">Selecione...</option>
+                                <% insumos.forEach(i => { %>
+                                    <option value="<%= i.id %>"
+                                        <%= i.id == (estoque.insumo?.id || estoque.insumo) ? 'selected' : '' %>>
+                                        <%= i.descricao %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                            <% if (erros.has('insumo')) { %>
+                                <div class="invalid-feedback d-block">
+                                    <% erros.get('insumo').forEach(m => { %><span><%= m %></span><br><% }) %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="form-group col-md-3 mb-3">
+                            <label for="quantidade">Quantidade</label>
+                            <input type="number" step="0.01"
+                                class="form-control <%= erros.has('quantidade') ? 'is-invalid' : '' %>"
+                                id="quantidade" name="quantidade"
+                                placeholder="Ex: 500"
+                                value="<%= estoque.quantidade || '' %>">
+                            <% if (erros.has('quantidade')) { %>
+                                <div class="invalid-feedback d-block">
+                                    <% erros.get('quantidade').forEach(m => { %><span><%= m %></span><br><% }) %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="form-group col-md-3 mb-3">
+                            <label for="localArmazenado">Local de Armazenamento</label>
+                            <input type="text"
+                                class="form-control <%= erros.has('localArmazenado') ? 'is-invalid' : '' %>"
+                                id="localArmazenado" name="localArmazenado"
+                                placeholder="Ex: Galpão A"
+                                value="<%= estoque.localArmazenado || '' %>">
+                            <% if (erros.has('localArmazenado')) { %>
+                                <div class="invalid-feedback d-block">
+                                    <% erros.get('localArmazenado').forEach(m => { %><span><%= m %></span><br><% }) %>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4 mb-3">
+                            <label for="dtEntrada">Data de Entrada</label>
+                            <input type="date"
+                                class="form-control <%= erros.has('dtEntrada') ? 'is-invalid' : '' %>"
+                                id="dtEntrada" name="dtEntrada"
+                                value="<%= estoque.dtEntrada || '' %>">
+                            <% if (erros.has('dtEntrada')) { %>
+                                <div class="invalid-feedback d-block">
+                                    <% erros.get('dtEntrada').forEach(m => { %><span><%= m %></span><br><% }) %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="form-group col-md-4 mb-3">
+                            <label for="dtValidade">Validade do Produto</label>
+                            <input type="date"
+                                class="form-control"
+                                id="dtValidade" name="dtValidade"
+                                value="<%= estoque.dtValidade || '' %>">
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-primary mr-2">
+                            <i class="fa fa-save mr-1"></i> Salvar
+                        </button>
+                        <a href="/estoques" class="btn btn-warning">
+                            <i class="fa fa-times mr-1"></i> Cancelar
+                        </a>
+                        <a href="/" class="btn btn-secondary ml-2">
+                            <i class="fa fa-home mr-1"></i> Menu Inicial
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
