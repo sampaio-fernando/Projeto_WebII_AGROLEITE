@@ -9,6 +9,7 @@ import { InsumoModule } from './modules/insumo/insumo.module';
 import { CategoriaModule } from './modules/categoria/categoria.module';
 import { PiqueteModule } from './modules/piquete/piquete.module';
 import { PropriedadeModule } from './modules/propriedade/propriedade.module';
+import { EstoqueModule } from './modules/estoque/estoque.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { PropriedadeModule } from './modules/propriedade/propriedade.module';
     InsumoModule,
     CategoriaModule,
     PiqueteModule,
-    PropriedadeModule
+    PropriedadeModule,
+    EstoqueModule
   ],
   controllers: [AppController],
   providers: [AppService],
