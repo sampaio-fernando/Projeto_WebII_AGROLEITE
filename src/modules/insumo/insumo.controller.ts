@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Redirect, Render } from "@nestjs/common";
+import { Body, Controller, Get, Post, Redirect, Render, } from "@nestjs/common";
 import { InsumoService } from "./insumo.service";
 import { ValidationView } from "nest-validation-view";
 import { CreateInsumoDto } from "./dtos/create-insumo-dto";
@@ -12,11 +12,10 @@ export class InsumoController {
     @Get()
     @Render('insumo/inicial')
     async inicial(): Promise<object> {
-        const insumos = await this.insumoService.findall();
-
+        const listaInsumos = await this.insumoService.findAll();
         return {
             titulo: 'Consulta de Insumos',
-            insumos
+            insumos: listaInsumos
         }
     }
 

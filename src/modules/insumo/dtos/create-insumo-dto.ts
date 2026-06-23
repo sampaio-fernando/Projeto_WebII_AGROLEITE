@@ -21,9 +21,15 @@ export class CreateInsumoDto {
   @MinLength(5, { message: 'A descrição deve ter no mínimo 5 caracteres' })
   descricao!: string;
 
+  @IsNotEmpty()
+  und_medida!: string;
+
+  @IsNotEmpty()
+  categoria!: string;
+
   @IsNumber({ maxDecimalPlaces: 2 }, { message: 'O valor deve ter no máximo 2 casas decimais' })
   @Transform(({ value }) => toDecimalNumber(value))
-  @Min(0.01, { message: 'O preço deve no mínimo R$ 0,01'})
+  @Min(0.01, { message: 'Preço mínimo R$ 0,01'})
   valor_unit!: number;
 
 }
