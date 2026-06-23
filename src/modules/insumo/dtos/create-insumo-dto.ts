@@ -21,10 +21,10 @@ export class CreateInsumoDto {
   @MinLength(5, { message: 'A descrição deve ter no mínimo 5 caracteres' })
   descricao!: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'O campo unidade de medida é obrigatório!'})
   und_medida!: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'O campo categoria é obrigatório!'})
   categoria!: string;
 
   @IsNumber({ maxDecimalPlaces: 2 }, { message: 'O valor deve ter no máximo 2 casas decimais' })
