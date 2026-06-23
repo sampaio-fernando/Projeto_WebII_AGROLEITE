@@ -14,12 +14,7 @@ export class InsumoController {
     @Get()
     @Render('insumo/inicial')
     async inicial(): Promise<object> {
-<<<<<<< Updated upstream
         const listaInsumos = await this.insumoService.findAll();
-=======
-        const insumos = await this.insumoService.findAll();
-
->>>>>>> Stashed changes
         return {
             titulo: 'Consulta de Insumos',
             insumos: listaInsumos

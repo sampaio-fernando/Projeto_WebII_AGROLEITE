@@ -6,12 +6,6 @@ import { UpdateInsumoDto } from "./dtos/update-insumo-dto";
 
 @Injectable()
 export class InsumoService {
-<<<<<<< Updated upstream
-=======
-    create(dados: CreateInsumoDto) {
-        throw new Error("Method not implemented.");
-    }
->>>>>>> Stashed changes
     async findAll(): Promise<Insumo[]> {
         return Insumo.find();
     }
