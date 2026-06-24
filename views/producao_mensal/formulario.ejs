@@ -1,0 +1,89 @@
+<% const erros = validationErrors(locals.errors); %>
+<% const producaoMensal = locals.producaoMensal || {}; %>
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4><%= locals.titulo %></h4>
+            <p class="mb-0">&raquo; Preencha os dados da produção mensal</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicial</a></li>
+            <li class="breadcrumb-item"><a href="/producoes-mensais">Produção Mensal</a></li>
+            <li class="breadcrumb-item active">Formulário</li>
+        </ol>
+    </div>
+</div>
+
+<% if (erros.all.length) { %>
+    <div class="alert alert-danger">
+        <h5>Não foi possível salvar</h5>
+        <ul>
+            <% erros.all.forEach(msg => { %><li><%= msg %></li><% }) %>
+        </ul>
+    </div>
+<% } %>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <form action="/producoes-mensais/<%= producaoMensal.id ? producaoMensal.id + '/editar' : 'criar' %>" method="POST">
+                    <div class="form-row">
+                        <div class="form-group col-md-4 mb-3">
+                            <label for="mesReferencia">Mês de Referência</label>
+                            <input type="month"
+                                class="form-control <%= erros.has('mesReferencia') ? 'is-invalid' : '' %>"
+                                id="mesReferencia" name="mesReferencia"
+                                value="<%= producaoMensal.mesReferencia || '' %>">
+                            <% if (erros.has('mesReferencia')) { %>
+                                <div class="invalid-feedback d-block">
+                                    <% erros.get('mesReferencia').forEach(m => { %><span><%= m %></span><br><% }) %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="form-group col-md-4 mb-3">
+                            <label for="qtdTotalLitros">Quantidade Total (litros)</label>
+                            <input type="number" step="0.01"
+                                class="form-control <%= erros.has('qtdTotalLitros') ? 'is-invalid' : '' %>"
+                                id="qtdTotalLitros" name="qtdTotalLitros"
+                                placeholder="Ex: 9840"
+                                value="<%= producaoMensal.qtdTotalLitros || '' %>">
+                            <% if (erros.has('qtdTotalLitros')) { %>
+                                <div class="invalid-feedback d-block">
+                                    <% erros.get('qtdTotalLitros').forEach(m => { %><span><%= m %></span><br><% }) %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="form-group col-md-4 mb-3">
+                            <label for="valorLitro">Valor por Litro (R$)</label>
+                            <input type="number" step="0.01"
+                                class="form-control <%= erros.has('valorLitro') ? 'is-invalid' : '' %>"
+                                id="valorLitro" name="valorLitro"
+                                placeholder="Ex: 2.80"
+                                value="<%= producaoMensal.valorLitro || '' %>">
+                            <% if (erros.has('valorLitro')) { %>
+                                <div class="invalid-feedback d-block">
+                                    <% erros.get('valorLitro').forEach(m => { %><span><%= m %></span><br><% }) %>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-primary mr-2">
+                            <i class="fa fa-save mr-1"></i> Salvar
+                        </button>
+                        <a href="/producoes-mensais" class="btn btn-warning">
+                            <i class="fa fa-times mr-1"></i> Cancelar
+                        </a>
+                        <a href="/" class="btn btn-secondary ml-2">
+                            <i class="fa fa-home mr-1"></i> Menu Inicial
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

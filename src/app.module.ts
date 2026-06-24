@@ -10,6 +10,7 @@ import { CategoriaModule } from './modules/categoria/categoria.module';
 import { PiqueteModule } from './modules/piquete/piquete.module';
 import { PropriedadeModule } from './modules/propriedade/propriedade.module';
 import { EstoqueModule } from './modules/estoque/estoque.module';
+import { ProducaoMensalModule } from './modules/producao_mensal/producao_mensal.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { EstoqueModule } from './modules/estoque/estoque.module';
     CategoriaModule,
     PiqueteModule,
     PropriedadeModule,
-    EstoqueModule
+    EstoqueModule,
+    ProducaoMensalModule
   ],
   controllers: [AppController],
   providers: [AppService],
