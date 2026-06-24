@@ -22,7 +22,7 @@ export class AnimalController {
     
         return {
             titulo: 'Consulta de Animais',
-            produtos: listaAnimais
+            animais: listaAnimais
         }
     }
 

@@ -26,12 +26,12 @@ export class CreateAnimalDto {
     peso!: number;
 
     @IsNotEmpty({ message: 'O campo categoria é obrigatório'})
-      @IsNumber()
-      @Transform(({ value }) => parseInt(value))
-      categoria!: number;
+    @IsNumber()
+    @Transform(({ value }) => parseInt(value))
+    categoria!: number;
 
     @IsNotEmpty({ message: 'O campo propriedade é obrigatório'})
-      @IsNumber()
-      @Transform(({ value }) => parseInt(value))
-      propriedade!: number;
+    @IsNumber()
+    @Transform(({ value }) => parseInt(value))
+    propriedade!: number;
 }

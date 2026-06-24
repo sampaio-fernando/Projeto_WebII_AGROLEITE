@@ -54,7 +54,7 @@
                                 </div>
                             <% } %>
                     </div>
-
+                    <div class="form-row">
                     <div class="form-group col-md-4 mb-3">
                             <label for="data_nascimento">Data de Nascimento</label>
                             <input type="date"
@@ -63,7 +63,7 @@
                                 value="<%= animal.data_nascimento || '' %>">
                             <% if (erros.has('data_nascimento')) { %>
                                 <div class="invalid-feedback d-block">
-                                    <% erros.get('data_nascimento).forEach(m => { %><span><%= m %></span><br><% }) %>
+                                    <% erros.get('data_nascimento').forEach(m => { %><span><%= m %></span><br><% }) %>
                                 </div>
                             <% } %>
                         </div>
@@ -73,13 +73,14 @@
                             <input type="number" class="form-control" id="peso" name="peso" 
                                 placeholder="0" min="0" value="<%= animal ? animal.peso : '' %>">
                         </div>
+                    </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-3">
 
-                            <label for="categoria" class="form-label">Categoria</label>
+                            <label for="categoria" class="form-label">Categoria:</label>
                             <select name="categoria" class="form-control">
-                                <option value="">Selecione a categoria:</option>
+                                <option value="">Selecione a categoria</option>
 
                                 <% categorias.forEach(categoria => { %>
                                     <option value="<%= categoria.id %>" <%= categoria.id == animal?.categoria?.id ? 'selected' : '' %> ><%= categoria.nome %></option>
@@ -89,9 +90,9 @@
 
                         <div class="form-group col-md-6 mb-3">
 
-                            <label for="propriedade" class="form-label">Propriedade</label>
+                            <label for="propriedade" class="form-label">Propriedade:</label>
                             <select name="propriedade" class="form-control">
-                                <option value="">Selecione a propriedade:</option>
+                                <option value="">Selecione a propriedade</option>
 
                                 <% propriedades.forEach(propriedade => { %>
                                     <option value="<%= propriedade.id %>" <%= propriedade.id == animal?.propriedade?.id ? 'selected' : '' %> ><%= propriedade.nome %></option>
@@ -103,7 +104,7 @@
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary mr-2">Salvar Produto</button>
-                        <a href="/produtos" class="btn btn-warning">Cancelar</a>
+                        <a href="/animais" class="btn btn-warning">Cancelar</a>
                     </div>
 
                 </form>

@@ -11,6 +11,7 @@ import { PiqueteModule } from './modules/piquete/piquete.module';
 import { PropriedadeModule } from './modules/propriedade/propriedade.module';
 import { EstoqueModule } from './modules/estoque/estoque.module';
 import { ProducaoMensalModule } from './modules/producao_mensal/producao_mensal.module';
+import { AnimalModule } from './modules/animal/animal.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { ProducaoMensalModule } from './modules/producao_mensal/producao_mensal.
     PiqueteModule,
     PropriedadeModule,
     EstoqueModule,
-    ProducaoMensalModule
+    ProducaoMensalModule,
+    AnimalModule,
   ],
   controllers: [AppController],
   providers: [AppService],
