@@ -34,7 +34,7 @@
                     </form>
                 </div>
 
-                <a href="/produtos/criar" class="btn btn-primary mb-2">Adicionar Novo Animal</a>
+                <a href="/animais/criar" class="btn btn-primary mb-2">Adicionar Novo Animal</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -42,43 +42,29 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nome</th>
-                                <th>Preço</th>
-                                <th>Fornecedor</th>
-                                <th>Ativo</th>
-                                <th>Criado em</th>
+                                <th>Identificação</th>
+                                <th>Data Nascimento</th>
+                                <th>Peso (Kg)</th>
+                                <th>Categoria</th>
+                                <th>Propriedade</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            <% for( let index = 0; index < produtos.length; index++ ) { %>
+                            <% for( let index = 0; index < animais.length; index++ ) { %>
                                 <tr>
                                     <td><%= index + 1 %></td>
-                                    <td><%= produtos[index].nome %></td>
-                                    <td><%= moneyFormat(produtos[index].preco) %></td>
-                                    <td><%= produtos[index]?.fornecedor?.nome ? produtos[index]?.fornecedor?.nome : '-' %></td>
+                                    <td><%= animais[index].identificacao %></td>
+                                    <td><%= dateFormat(animais[index].data_nascimento) %></td>
+                                    <td><%= animais[index].peso %></td>
+                                    <td><%= animais[index]?.categoria?.nome ? animais[index]?.categoria?.nome : '-' %></td>
+                                    <td><%= animais[index]?.propriedade?.nome ? animais[index]?.propriedade?.nome : '-' %></td>
                                     <td>
-                                        <% if (produtos[index].ativo) { %>
-
-                                            <span class="badge badge-primary">Ativo</span>
-
-                                        <% } else { %>
-
-                                            <span class="badge badge-danger">Inativo</span>
-
-                                        <% } %>
-                                    </td>
-                                    <td><%= dateFormat(produtos[index].criadoEm) %></td>
-                                    <td>
-                                        <a href="/produtos/<%= produtos[index].id %>/editar" class="text-warning mr-1">
+                                        <a href="/animais/<%= animais[index].id %>/editar" class="text-warning mr-1">
                                             <i class="fa fa-pencil fa-lg"></i>
                                         </a>
-                                        <a href="/produtos/<%= produtos[index].id %>/excluir" class="text-danger">
-                                            <i class="fa fa-trash fa-lg"></i>
-                                        </a>
-                                        
-                                        <a href="#" class="text-secondary remover" data-name="<%= produtos[index].nome %>" data-id="<%= produtos[index].id %>">
+                                        <a href="/animais/<%= animais[index].id %>/excluir" class="text-danger">
                                             <i class="fa fa-trash fa-lg"></i>
                                         </a>
                                     </td>

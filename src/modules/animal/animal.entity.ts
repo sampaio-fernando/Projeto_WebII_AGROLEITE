@@ -15,10 +15,10 @@ export class Animal extends BaseEntity {
 
     @CreateDateColumn({ name: 'data_nascimento' })
     data_nascimento!: Date;
-
+    
     @Column({ type: 'decimal', precision: 10, scale: 2 })
     peso!: number;
-
+    
     @ManyToOne(() => Categoria)
     @JoinColumn({
         name: 'categoria_id'
