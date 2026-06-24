@@ -7,13 +7,13 @@ import { UpdateAnimalDto } from "./dto/update.animal";
 @Injectable()
 export class AnimalService {
     async findAll(): Promise<Animal[]> {
-        return Animal.find({ relations: ['categoria'] ['propriedade'] });
+        return Animal.find({ relations: ['categoria', 'propriedade'] });
     }
 
     async findOne(id: number): Promise<Animal | null> {
         return Animal.findOne({
             where: { id },
-            relations: ['categoria'] ['propriedade']
+            relations: ['categoria', 'propriedade']
         });
     }
 

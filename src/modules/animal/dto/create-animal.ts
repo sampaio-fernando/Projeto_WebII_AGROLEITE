@@ -34,4 +34,5 @@ export class CreateAnimalDto {
     @IsNumber()
     @Transform(({ value }) => parseInt(value))
     propriedade!: number;
+
 }

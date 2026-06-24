@@ -19,13 +19,14 @@ export class AnimalController {
     @Render('animal/inicial')
     async inicial(): Promise<object> {
         const listaAnimais = await this.animalService.findAll();
-    
+
         return {
             titulo: 'Consulta de Animais',
             animais: listaAnimais
         }
+        
     }
-
+    
     @Get('criar')
     @Render('animal/formulario')
     async formularioCriar(): Promise<object> {
