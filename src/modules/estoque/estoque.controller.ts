@@ -28,13 +28,13 @@ export class EstoqueController {
     }
 
     @Post('criar')
-    @Redirect('/estoque')
+    @Redirect('/estoques')
     @ValidationView('estoque/formulario', ({ request, errors }) => ({
-        estoque: { ...request.body },
-        errors,
+    estoque: { ...request.body },
+    errors,
     }))
     async formularioCriarSalvar(@Body() dados: CreateEstoqueDto): Promise<void> {
-        await this.estoqueService.create(dados);
+    await this.estoqueService.create(dados);
     }
 
     @Get(':id/editar')
@@ -47,13 +47,13 @@ export class EstoqueController {
     }
 
     @Post(':id/editar')
-    @Redirect('/estoque')
+    @Redirect('/estoques')
     @ValidationView('estoque/formulario', ({ request, errors }) => ({
-        estoque: { id: request.params.id, ...request.body },
-        errors,
+    estoque: { id: request.params.id, ...request.body },
+    errors,
     }))
     async formEditarSalvar(@Param('id') id: number, @Body() dados: UpdateEstoqueDto): Promise<void> {
-        await this.estoqueService.update(id, dados);
+    await this.estoqueService.update(id, dados);
     }
 
     @Get(':id/excluir')
@@ -69,9 +69,9 @@ export class EstoqueController {
     }
 
     @Post(':id/excluir')
-    @Redirect('/estoque')
+    @Redirect('/estoques')
     async formExcluirSalvar(@Param('id') id: number): Promise<void> {
-        await this.estoqueService.remove(id);
+    await this.estoqueService.remove(id);
     }
 
     @Post(':id/remover')
